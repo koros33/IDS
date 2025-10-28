@@ -1,0 +1,36 @@
+rules:
+  - id: R001
+    name: "Suspicious Login Attempt"
+    description: "Detect repeated failed login attempts (possible brute force)."
+    pattern: "Failed login"
+    threshold:
+      count: 5
+      timeframe: 60
+    mitre:
+      technique_id: "T1110"
+      technique_name: "Brute Force"
+      tactic: "Credential Access"
+    severity: "high"
+
+  - id: R002
+    name: "DNS Exfiltration"
+    description: "Detect unusually large number of DNS queries to same domain."
+    protocol: "DNS"
+    threshold:
+      count: 50
+      timeframe: 120
+    mitre:
+      technique_id: "T1048"
+      technique_name: "Exfiltration Over Alternative Protocol"
+      tactic: "Exfiltration"
+    severity: "medium"
+
+  - id: R003
+    name: "Known Malware Signature"
+    description: "Detect known malicious string in packet payload."
+    pattern: "X5O!P%@AP"
+    mitre:
+      technique_id: "T1027"
+      technique_name: "Obfuscated Files or Information"
+      tactic: "Defense Evasion"
+    severity: "critical"
